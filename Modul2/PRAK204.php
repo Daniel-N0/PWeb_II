@@ -12,7 +12,6 @@ $hasil = "";
 if (isset($_POST['submit'])) {
     $v = (int)$nilai;
 
-    // Logika yang sudah diperbaiki
     if ($v == 0) {
         $hasil = "Nol";
     } elseif ($v >= 1 && $v <= 9) {
@@ -20,7 +19,6 @@ if (isset($_POST['submit'])) {
     } elseif ($v >= 11 && $v <= 19) {
         $hasil = "Belasan";
     } elseif ($v == 10 || ($v >= 20 && $v <= 99)) {
-        // Angka 10 dan 20-99 masuk ke Puluhan
         $hasil = "Puluhan";
     } elseif ($v >= 100 && $v <= 999) {
         $hasil = "Ratusan";
