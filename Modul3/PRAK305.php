@@ -16,10 +16,10 @@
         $panjang = strlen($kata);
         $arr_kata = str_split($kata);
 
-        echo "<b>Input:</b><br>";
+        echo "<b>Input:</b><br><br>";
         echo "$kata<br><br>";
         
-        echo "<b>Output:</b><br>";
+        echo "<b>Output:</b><br><br>";
 
         for ($i = 0; $i < $panjang; $i++) {
             for ($j = 0; $j < $panjang; $j++) {
