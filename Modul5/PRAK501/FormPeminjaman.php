@@ -30,6 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tgl_pinjam_post = $_POST['tgl_pinjam'];
     $tgl_kembali_post = $_POST['tgl_kembali'];
 
+    if (strtotime($tgl_kembali_post) < strtotime($tgl_pinjam_post)) {
+        echo "<script>alert('Gagal! Tanggal kembali tidak boleh lebih awal dari tanggal peminjaman.'); window.history.back();</script>";
+        exit;
+    }
+
     if (isset($_POST['id_peminjaman']) && !empty($_POST['id_peminjaman'])) {
         $id_peminjaman_post = $_POST['id_peminjaman'];
         if (editPeminjaman($id_peminjaman_post, $id_member_post, $id_buku_post, $tgl_pinjam_post, $tgl_kembali_post)) {
@@ -113,5 +118,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <a href="Peminjaman.php" class="back-link">Kembali ke Tabel</a>
 
+<script>
+    const tglPinjam = document.getElementById('tgl_pinjam');
+    const tglKembali = document.getElementById('tgl_kembali');
+
+    tglPinjam.addEventListener('change', function() {
+        tglKembali.min = this.value;
+        
+        if (tglKembali.value < this.value) {
+            tglKembali.value = '';
+        }
+    });
+
+    if(tglPinjam.value) {
+        tglKembali.min = tglPinjam.value;
+    }
+</script>
+
 </body>
-</html> 
+</html>
